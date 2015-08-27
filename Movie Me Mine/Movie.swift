@@ -11,24 +11,24 @@ import SwiftyJSON
 
 struct Movie {
 
-    let adult: Bool
+    let backdropPath: String
     let posterPath: String
     let id: UInt
     let title: String
     let overview: String
     let releaseDate: String?
-    let rating: Float
+    let runtime: Int?
+    let rating: Float?
     
     init(json: JSON) {
-        
-        adult = json["adult"].boolValue
+        backdropPath = json["backdrop_path"].stringValue
         posterPath = json["poster_path"].stringValue
         id = json["id"].uIntValue
         title = json["title"].stringValue
         overview = json["overview"].stringValue
         releaseDate = json["release_date"].string
-        rating = json["vote_averate"].floatValue
-        
+        rating = json["vote_average"].float
+        runtime = json["runtime"].int
     }
 
 }

@@ -80,7 +80,23 @@ final class MovieDatabaseAPI {
         
         let popularURL = buildURL(EndPoints.popularMovies, parameters: ["page":"1"])
         
-        let task = session.dataTaskWithURL(popularURL) { (data: NSData?, response: NSURLResponse?, error: NSError?) in
+        fetchMovieList(popularURL, callback: callback)
+    }
+    
+    func movieSearch(search: String, callback: MovieListCallback?) {
+        
+        let params = [
+            "query":search,
+            "include_adult":"false",
+        ]
+        let searchURL = buildURL(EndPoints.searchMovies, parameters: params)
+        
+        fetchMovieList(searchURL, callback: callback)
+    }
+    
+    private func fetchMovieList(url: NSURL, callback: MovieListCallback?) {
+        
+        let task = session.dataTaskWithURL(url) { (data: NSData?, response: NSURLResponse?, error: NSError?) in
             do {
                 let json = try self.parseDataTaskToJSON(data, response: response, error: error)
                 
@@ -102,8 +118,8 @@ final class MovieDatabaseAPI {
         }
         
         task.resume()
-        
     }
+    
     
     func fetchPosterImage(movie: Movie, size: Int? = nil, callback: ImageCallback? = nil) {
         let sizeName = configuration.closestSize(size, sizes: configuration.posterSizes)
@@ -111,7 +127,9 @@ final class MovieDatabaseAPI {
         let imageKey = imageURL.absoluteString
         
         if let image = cachedImages[imageKey] {
-            callback?(image: image)
+            dispatch_async(dispatch_get_main_queue()) {
+                callback?(image: image)
+            }
             return
         }
         
@@ -121,12 +139,14 @@ final class MovieDatabaseAPI {
                 
                 self.cachedImages[imageKey] = image
                 
-                callback?(image: image)
+                dispatch_async(dispatch_get_main_queue()) {
+                    callback?(image: image)
+                }
             }
             catch {
                 print("No Image: \(movie.title)")
                 print(error)
-                callback?(image: nil)
+                callback?(image: UIImage(named: "blankMoviePoster"))
             }
         }
         
@@ -153,7 +173,6 @@ final class MovieDatabaseAPI {
     }
     
     private func buildImageURL(filename: String, sizeName: String = "original") -> NSURL {
-        // TODO: get something to convert pixel size to image size
         let path = configuration.secureURL + sizeName + filename
         return NSURL(string: path)!
     }

@@ -23,7 +23,17 @@ class MovieListViewController: UIViewController {
     
     var dataSource: MovieListDataSource? {
         didSet {
+            guard let source = dataSource else {
+                self.movieGrid.dataSource = nil
+                return
+            }
             
+            source.collectionView = self.movieGrid
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.movieGrid.reloadData()
+                self.movieGrid.flashScrollIndicators()
+            }
         }
     }
     
@@ -49,18 +59,11 @@ class MovieListViewController: UIViewController {
                 guard let movies = $0 else {
                     return
                 }
-                
                 let source = MovieListDataSource(movies: movies, databaseAPI: database)
-                source.collectionView = self.movieGrid
                 self.dataSource = source
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.movieGrid.reloadData()
-                }
             }
-            
+            self.database = database
         }
-        self.database = database
     }
     
     // MARK: Appearance
@@ -110,6 +113,26 @@ extension MovieListViewController : UISearchBarDelegate {
         print("search: \(searchBar.text)")
         searchBar.resignFirstResponder()
         searchBar.setShowsCancelButton(false, animated: true)
+        
+        guard let database = database else {
+            print("Can't Search - no API Access")
+            return
+        }
+        
+        guard let search = searchBar.text else {
+            print("No Text to Search With")
+            return
+        }
+        
+        database.movieSearch(search) {
+            guard let movies = $0 else {
+                return
+            }
+            let source = MovieListDataSource(movies: movies, databaseAPI: database)
+            self.dataSource = source
+        }
+        
+        
     }
 }
 

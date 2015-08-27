@@ -38,12 +38,13 @@ class MovieCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         movie = nil
+        poster.image = nil
+        poster.backgroundColor = UIColor.clearColor()
     }
     
     private func update() {
         titleLabel.text = movie?.title
         releaseDateLabel.text = movie?.releaseDate
-        poster.image = nil
         if let downloadable = movie {
             downloadPoster(downloadable)
         }
@@ -51,11 +52,17 @@ class MovieCell: UICollectionViewCell {
 
     
     private func downloadPoster(movie: Movie) {
-        databaseAPI?.fetchPosterImage(movie, size: Int(poster.frame.width) ) {
+        databaseAPI?.fetchPosterImage(movie, size: Int(self.poster.frame.width)) { (image) -> () in
             guard self.movie?.id == movie.id else {
                 return
             }
-            self.poster.image = $0
+            UIView.transitionWithView( self.poster,
+                duration: 0.2,
+                options: [.CurveEaseOut, .TransitionCrossDissolve],
+                animations: {
+                    self.poster.image = image
+                },
+                completion: nil)
         }
     }
     

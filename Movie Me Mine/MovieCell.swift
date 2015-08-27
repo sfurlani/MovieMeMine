@@ -1,5 +1,5 @@
 //
-//  MovieCollectionViewCell.swift
+//  MovieCell.swift
 //  Movie Me Mine
 //
 //  Created by SFurlani on 8/27/15.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class MovieCollectionViewCell: UICollectionViewCell {
+class MovieCell: UICollectionViewCell {
 
-    static let nibName = "MovieCollectionViewCell"
+    static let nibName = "MovieCell"
     
     static let reuseIdentifier = "movieCell"
     

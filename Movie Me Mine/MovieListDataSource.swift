@@ -15,8 +15,8 @@ final class MovieListDataSource: NSObject {
         didSet {
             collectionView?.dataSource = self
             collectionView?.reloadData()
-            let cellNib = UINib(nibName:MovieCollectionViewCell.nibName , bundle: nil)
-            collectionView?.registerNib(cellNib, forCellWithReuseIdentifier: MovieCollectionViewCell.reuseIdentifier)
+            let cellNib = UINib(nibName:MovieCell.nibName , bundle: nil)
+            collectionView?.registerNib(cellNib, forCellWithReuseIdentifier: MovieCell.reuseIdentifier)
         }
     }
     
@@ -38,7 +38,7 @@ extension MovieListDataSource : UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCellWithReuseIdentifier(MovieCollectionViewCell.reuseIdentifier, forIndexPath: indexPath)
+        return collectionView.dequeueReusableCellWithReuseIdentifier(MovieCell.reuseIdentifier, forIndexPath: indexPath)
     }
     
 }

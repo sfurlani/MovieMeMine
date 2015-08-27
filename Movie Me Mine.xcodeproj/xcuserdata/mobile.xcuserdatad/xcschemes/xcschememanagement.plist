@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>mmmFramework.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>75F06E8C1B8F53B900F154C4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>75F344701B8F6B94000D108D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -10,6 +10,10 @@ import UIKit
 
 class MovieListViewController: UIViewController {
 
+    struct SegueIdentifiers {
+        static let showDetail = "showDetail"
+    }
+    
     // MARK: - IBOutlets
     
     @IBOutlet weak var movieGrid: UICollectionView!
@@ -83,13 +87,33 @@ class MovieListViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        segueSwitch: switch segue.destinationViewController {
+            
+        case let vc as MovieDetailViewController:
+            guard let index = movieGrid.indexPathsForSelectedItems()?.first?.item else {
+                break segueSwitch
+            }
+            vc.movie = dataSource?.movies[index]
+            
+        default:
+            break segueSwitch
+        }
     }
 
 }
 
 extension MovieListViewController : UICollectionViewDelegate {
 
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        guard dataSource?.movies.count > indexPath.row else {
+            return
+        }
+        
+        performSegueWithIdentifier(SegueIdentifiers.showDetail, sender: nil)
+        
+    }
+    
 }
 
 extension MovieListViewController : UISearchBarDelegate {

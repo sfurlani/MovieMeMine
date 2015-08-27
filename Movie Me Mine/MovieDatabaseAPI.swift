@@ -16,6 +16,7 @@ final class MovieDatabaseAPI {
     
     typealias ConfigureCallback = (database: MovieDatabaseAPI) -> ()
     typealias MovieListCallback = (movies: [Movie]?) -> ()
+    typealias MovieCallback = (movie: Movie?) -> ()
     typealias ImageCallback = (image: UIImage?) -> ()
 
     enum APIErrorType : ErrorType {
@@ -29,6 +30,7 @@ final class MovieDatabaseAPI {
         static let configuration = "/configuration"
         static let searchMovies = "/search/movie"
         static let popularMovies = "/movie/popular"
+        static let movieDetail = "/movie/"
     }
     
     // MARK: - Properties
@@ -71,6 +73,27 @@ final class MovieDatabaseAPI {
                 print(error)
             }
             
+        }
+        
+        task.resume()
+    }
+    
+    func fetchMovieDetails(movie: Movie, callback: MovieCallback?) {
+        let movieURL = buildURL(EndPoints.movieDetail + "\(movie.id)")
+        
+        let task = session.dataTaskWithURL(movieURL) { (data: NSData?, response: NSURLResponse?, error: NSError?) in
+            do {
+                let json = try self.parseDataTaskToJSON(data, response: response, error: error)
+                
+                let updatedMovie = Movie(json: json)
+                
+                callback?(movie: updatedMovie)
+            }
+            catch {
+                print("No Movies")
+                print(error)
+                callback?(movie: nil)
+            }
         }
         
         task.resume()
@@ -144,9 +167,11 @@ final class MovieDatabaseAPI {
                 }
             }
             catch {
-                print("No Image: \(movie.title)")
+                print("No Image: (\(movie.id)) at \(imageKey)")
                 print(error)
-                callback?(image: UIImage(named: "blankMoviePoster"))
+                dispatch_async(dispatch_get_main_queue()) {
+                    callback?(image: UIImage(named: "blankMoviePoster"))
+                }
             }
         }
         

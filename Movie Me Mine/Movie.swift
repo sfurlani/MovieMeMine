@@ -31,4 +31,25 @@ struct Movie {
         runtime = json["runtime"].int
     }
 
+    func movieDescription() -> String {
+        var output = ""
+        
+        output += "TITLE: \(title)\n"
+        
+        if let releaseDate = releaseDate {
+            output += "RELEASED: \(releaseDate)\n"
+        }
+        if let rating = rating {
+            output += "RATING: \(rating)/10\n"
+        }
+        if let runtime = runtime {
+            output += "RUNNING TIME: \(runtime) minutes\n"
+        }
+        
+        output += "\nDESCRIPTION:\n"+overview
+        
+        return output
+    }
+    
+    
 }

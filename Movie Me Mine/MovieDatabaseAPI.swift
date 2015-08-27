@@ -147,7 +147,18 @@ final class MovieDatabaseAPI {
     func fetchPosterImage(movie: Movie, size: Int? = nil, callback: ImageCallback? = nil) {
         let sizeName = configuration.closestSize(size, sizes: configuration.posterSizes)
         let imageURL = buildImageURL(movie.posterPath, sizeName: sizeName)
-        let imageKey = imageURL.absoluteString
+        fetchImage(imageURL, callback: callback)
+    }
+    
+    func fetchBackdropImage(movie: Movie, size: Int? = nil, callback: ImageCallback? = nil) {
+        let sizeName = configuration.closestSize(size, sizes: configuration.backdropSizes)
+        let imageURL = buildImageURL(movie.backdropPath, sizeName: sizeName)
+        fetchImage(imageURL, callback: callback)
+    }
+    
+    private func fetchImage(url: NSURL, callback: ImageCallback?) {
+        
+        let imageKey = url.absoluteString
         
         if let image = cachedImages[imageKey] {
             dispatch_async(dispatch_get_main_queue()) {
@@ -156,7 +167,7 @@ final class MovieDatabaseAPI {
             return
         }
         
-        let task = session.dataTaskWithURL(imageURL) { (data: NSData?, response: NSURLResponse?, error: NSError?) in
+        let task = session.dataTaskWithURL(url) { (data: NSData?, response: NSURLResponse?, error: NSError?) in
             do {
                 let image = try self.parseDataTaskToImage(data, response: response, error: error)
                 
@@ -167,16 +178,15 @@ final class MovieDatabaseAPI {
                 }
             }
             catch {
-                print("No Image: (\(movie.id)) at \(imageKey)")
+                print("No Image: at \(imageKey)")
                 print(error)
                 dispatch_async(dispatch_get_main_queue()) {
-                    callback?(image: UIImage(named: "blankMoviePoster"))
+                    callback?(image: nil)
                 }
             }
         }
         
         task.resume()
-        
     }
     
     // MARK: - Helper Functions

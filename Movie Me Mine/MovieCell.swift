@@ -18,6 +18,12 @@ class MovieCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     
+    override var highlighted: Bool {
+        didSet {
+            self.poster.alpha = highlighted ? 0.5 : 1.0
+        }
+    }
+    
     var movie: Movie? {
         didSet {
             update()
@@ -49,7 +55,8 @@ class MovieCell: UICollectionViewCell {
             downloadPoster(downloadable)
         }
     }
-
+    
+    
     
     private func downloadPoster(movie: Movie) {
         databaseAPI?.fetchPosterImage(movie, size: Int(self.poster.frame.width)) { (image) -> () in

@@ -93,6 +93,7 @@ class MovieListViewController: UIViewController {
             guard let index = movieGrid.indexPathsForSelectedItems()?.first?.item else {
                 break segueSwitch
             }
+            vc.database = database
             vc.movie = dataSource?.movies[index]
             
         default:

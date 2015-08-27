@@ -11,9 +11,20 @@ import UIKit
 final class MovieListDataSource: NSObject {
     let movies: [Movie]
     
+    var collectionView: UICollectionView? {
+        didSet {
+            collectionView?.dataSource = self
+            collectionView?.reloadData()
+            let cellNib = UINib(nibName:MovieCollectionViewCell.nibName , bundle: nil)
+            collectionView?.registerNib(cellNib, forCellWithReuseIdentifier: MovieCollectionViewCell.reuseIdentifier)
+        }
+    }
+    
     init(movies: [Movie]) {
         self.movies = movies
     }
+    
+    
 }
 
 extension MovieListDataSource : UICollectionViewDataSource {
@@ -27,7 +38,7 @@ extension MovieListDataSource : UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCellWithReuseIdentifier("missingCell", forIndexPath: indexPath)
+        return collectionView.dequeueReusableCellWithReuseIdentifier(MovieCollectionViewCell.reuseIdentifier, forIndexPath: indexPath)
     }
     
 }

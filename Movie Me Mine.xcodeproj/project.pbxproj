@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		75F06E721B8F53B900F154C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F06E711B8F53B900F154C4 /* AppDelegate.swift */; };
-		75F06E741B8F53B900F154C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F06E731B8F53B900F154C4 /* ViewController.swift */; };
 		75F06E771B8F53B900F154C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75F06E751B8F53B900F154C4 /* Main.storyboard */; };
 		75F06E791B8F53B900F154C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75F06E781B8F53B900F154C4 /* Assets.xcassets */; };
 		75F06E7C1B8F53B900F154C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75F06E7A1B8F53B900F154C4 /* LaunchScreen.storyboard */; };
 		75F06E871B8F53B900F154C4 /* Movie_Me_MineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F06E861B8F53B900F154C4 /* Movie_Me_MineTests.swift */; };
 		75F06E921B8F53B900F154C4 /* Movie_Me_MineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F06E911B8F53B900F154C4 /* Movie_Me_MineUITests.swift */; };
+		75F06EA61B8F5AFD00F154C4 /* MovieDatabaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F06EA51B8F5AFD00F154C4 /* MovieDatabaseAPI.swift */; settings = {ASSET_TAGS = (); }; };
+		75F06EAA1B8F5E9600F154C4 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 75F06EA91B8F5E9600F154C4 /* Cartfile */; settings = {ASSET_TAGS = (); }; };
+		75F06EAE1B8F5EA600F154C4 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F06EAC1B8F5EA600F154C4 /* SwiftyJSON.framework */; settings = {ASSET_TAGS = (); }; };
+		75F06EAF1B8F5EA700F154C4 /* SwiftyJSON.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 75F06EAD1B8F5EA600F154C4 /* SwiftyJSON.framework.dSYM */; settings = {ASSET_TAGS = (); }; };
+		75F06EB11B8F5EB300F154C4 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 75F06EAC1B8F5EA600F154C4 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,10 +37,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		75F06EB21B8F5EB300F154C4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				75F06EB11B8F5EB300F154C4 /* SwiftyJSON.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		75F06E6E1B8F53B900F154C4 /* Movie Me Mine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie Me Mine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75F06E711B8F53B900F154C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		75F06E731B8F53B900F154C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		75F06E761B8F53B900F154C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		75F06E781B8F53B900F154C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75F06E7B1B8F53B900F154C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +64,10 @@
 		75F06E8D1B8F53B900F154C4 /* Movie Me MineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Movie Me MineUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75F06E911B8F53B900F154C4 /* Movie_Me_MineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie_Me_MineUITests.swift; sourceTree = "<group>"; };
 		75F06E931B8F53B900F154C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75F06EA51B8F5AFD00F154C4 /* MovieDatabaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDatabaseAPI.swift; sourceTree = "<group>"; };
+		75F06EA91B8F5E9600F154C4 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		75F06EAC1B8F5EA600F154C4 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = "<group>"; };
+		75F06EAD1B8F5EA600F154C4 /* SwiftyJSON.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = SwiftyJSON.framework.dSYM; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75F06EAE1B8F5EA600F154C4 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +102,7 @@
 				75F06E701B8F53B900F154C4 /* Movie Me Mine */,
 				75F06E851B8F53B900F154C4 /* Movie Me MineTests */,
 				75F06E901B8F53B900F154C4 /* Movie Me MineUITests */,
+				75F06EA71B8F5DBE00F154C4 /* Carthage */,
 				75F06E6F1B8F53B900F154C4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,8 +120,13 @@
 		75F06E701B8F53B900F154C4 /* Movie Me Mine */ = {
 			isa = PBXGroup;
 			children = (
+				75F06EA41B8F5AE600F154C4 /* Model */,
+				75F06EA31B8F585500F154C4 /* Utility */,
+				75F06EA21B8F584F00F154C4 /* Segues */,
+				75F06EA11B8F584700F154C4 /* Views */,
+				75F06EA01B8F584100F154C4 /* ViewModel */,
+				75F06E9F1B8F583800F154C4 /* ViewControllers */,
 				75F06E711B8F53B900F154C4 /* AppDelegate.swift */,
-				75F06E731B8F53B900F154C4 /* ViewController.swift */,
 				75F06E751B8F53B900F154C4 /* Main.storyboard */,
 				75F06E781B8F53B900F154C4 /* Assets.xcassets */,
 				75F06E7A1B8F53B900F154C4 /* LaunchScreen.storyboard */,
@@ -125,6 +153,68 @@
 			path = "Movie Me MineUITests";
 			sourceTree = "<group>";
 		};
+		75F06E9F1B8F583800F154C4 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		75F06EA01B8F584100F154C4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		75F06EA11B8F584700F154C4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		75F06EA21B8F584F00F154C4 /* Segues */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Segues;
+			sourceTree = "<group>";
+		};
+		75F06EA31B8F585500F154C4 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		75F06EA41B8F5AE600F154C4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				75F06EA51B8F5AFD00F154C4 /* MovieDatabaseAPI.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		75F06EA71B8F5DBE00F154C4 /* Carthage */ = {
+			isa = PBXGroup;
+			children = (
+				75F06EAB1B8F5EA600F154C4 /* iOS */,
+				75F06EA91B8F5E9600F154C4 /* Cartfile */,
+			);
+			name = Carthage;
+			sourceTree = "<group>";
+		};
+		75F06EAB1B8F5EA600F154C4 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				75F06EAC1B8F5EA600F154C4 /* SwiftyJSON.framework */,
+				75F06EAD1B8F5EA600F154C4 /* SwiftyJSON.framework.dSYM */,
+			);
+			name = iOS;
+			path = Carthage/Build/iOS;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +225,8 @@
 				75F06E6A1B8F53B900F154C4 /* Sources */,
 				75F06E6B1B8F53B900F154C4 /* Frameworks */,
 				75F06E6C1B8F53B900F154C4 /* Resources */,
+				75F06EB21B8F5EB300F154C4 /* Embed Frameworks */,
+				75F06EA81B8F5E4700F154C4 /* Copy Carthage */,
 			);
 			buildRules = (
 			);
@@ -229,7 +321,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				75F06E7C1B8F53B900F154C4 /* LaunchScreen.storyboard in Resources */,
+				75F06EAF1B8F5EA700F154C4 /* SwiftyJSON.framework.dSYM in Resources */,
 				75F06E791B8F53B900F154C4 /* Assets.xcassets in Resources */,
+				75F06EAA1B8F5E9600F154C4 /* Cartfile in Resources */,
 				75F06E771B8F53B900F154C4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,13 +344,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		75F06EA81B8F5E4700F154C4 /* Copy Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(CARTHAGE_BUILD_IOS)/SwiftyJSON.framework",
+			);
+			name = "Copy Carthage";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		75F06E6A1B8F53B900F154C4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75F06E741B8F53B900F154C4 /* ViewController.swift in Sources */,
 				75F06E721B8F53B900F154C4 /* AppDelegate.swift in Sources */,
+				75F06EA61B8F5AFD00F154C4 /* MovieDatabaseAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +510,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CARTHAGE_BUILD_IOS = "$(SRCROOT)/Carthage/Build/iOS/";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Movie Me Mine/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.optoro.Movie-Me-Mine";
@@ -409,6 +526,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CARTHAGE_BUILD_IOS = "$(SRCROOT)/Carthage/Build/iOS/";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Movie Me Mine/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.optoro.Movie-Me-Mine";

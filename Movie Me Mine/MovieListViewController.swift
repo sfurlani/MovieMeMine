@@ -19,9 +19,11 @@ class MovieListViewController: UIViewController {
     
     // MARK: Properties
     
-    var database: MovieDatabaseAPI? {
+    var database: MovieDatabaseAPI?
+    
+    var dataSource: MovieListDataSource? {
         didSet {
-            updateView()
+            
         }
     }
     
@@ -30,31 +32,37 @@ class MovieListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let database = MovieDatabaseAPI()
-        
-        database.configure { (database: MovieDatabaseAPI) in
-            print(database.configuration == nil ? "No Config" : "Got Config \(database.configuration.baseURL)")
-            self.database = database
-            
-            
-            database.popularMovies{
-                
-                guard let movies = $0 else {
-                    print("No Movies")
-                    return
-                }
-                
-                let titles = movies.map { $0.title }.joinWithSeparator("\n")
-                
-                print("Movies: \(movies.count)\n\(titles)")
-            }
-            
-        }
+        configureDatabase(MovieDatabaseAPI())
         self.searchProgress.progress = 0.0
         self.searchProgress.hidden = true
         self.downloadIndicator.stopAnimating()
     }
 
+    
+    private func configureDatabase(database: MovieDatabaseAPI) {
+        database.configure { (database: MovieDatabaseAPI) in
+            print(database.configuration == nil ? "No Config" : "Got Config \(database.configuration.baseURL)")
+            
+            
+            database.popularMovies{
+                
+                guard let movies = $0 else {
+                    return
+                }
+                
+                let source = MovieListDataSource(movies: movies, databaseAPI: database)
+                source.collectionView = self.movieGrid
+                self.dataSource = source
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.movieGrid.reloadData()
+                }
+            }
+            
+        }
+        self.database = database
+    }
+    
     // MARK: Appearance
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

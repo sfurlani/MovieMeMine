@@ -24,6 +24,11 @@ class MovieCell: UICollectionViewCell {
         }
     }
     
+    var databaseAPI: MovieDatabaseAPI? {
+        didSet {
+            update()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,11 +41,22 @@ class MovieCell: UICollectionViewCell {
     }
     
     private func update() {
-        
         titleLabel.text = movie?.title
         releaseDateLabel.text = movie?.releaseDate
-        
-        
+        poster.image = nil
+        if let downloadable = movie {
+            downloadPoster(downloadable)
+        }
     }
 
+    
+    private func downloadPoster(movie: Movie) {
+        databaseAPI?.fetchPosterImage(movie, size: Int(poster.frame.width) ) {
+            guard self.movie?.id == movie.id else {
+                return
+            }
+            self.poster.image = $0
+        }
+    }
+    
 }

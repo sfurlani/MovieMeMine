@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import UIKit
 
 final class MovieDatabaseAPI {
     
@@ -15,6 +16,7 @@ final class MovieDatabaseAPI {
     
     typealias ConfigureCallback = (database: MovieDatabaseAPI) -> ()
     typealias MovieListCallback = (movies: [Movie]?) -> ()
+    typealias ImageCallback = (image: UIImage?) -> ()
 
     enum APIErrorType : ErrorType {
         case UnableToFormURL(String)
@@ -39,10 +41,11 @@ final class MovieDatabaseAPI {
     
     private(set) var configuration: Configuration!
     
+    private var cachedImages: [String:UIImage] = [String:UIImage]()
+    
     init(rootPath: String = "http://api.themoviedb.org/3") {
         basePath = rootPath
         session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
-        
     }
     
     deinit {
@@ -74,6 +77,7 @@ final class MovieDatabaseAPI {
     }
     
     func popularMovies(callback: MovieListCallback?) {
+        
         let popularURL = buildURL(EndPoints.popularMovies, parameters: ["page":"1"])
         
         let task = session.dataTaskWithURL(popularURL) { (data: NSData?, response: NSURLResponse?, error: NSError?) in
@@ -84,11 +88,45 @@ final class MovieDatabaseAPI {
                 
                 let movies = results.arrayValue.map { Movie(json: $0) }
                 
+                let titles = movies.map { $0.title }.joinWithSeparator("\n")
+                
+                print("Movies: \(movies.count)\n\(titles)")
+                
                 callback?(movies: movies)
             }
             catch {
+                print("No Movies")
                 print(error)
                 callback?(movies: nil)
+            }
+        }
+        
+        task.resume()
+        
+    }
+    
+    func fetchPosterImage(movie: Movie, size: Int? = nil, callback: ImageCallback? = nil) {
+        let sizeName = configuration.closestSize(size, sizes: configuration.posterSizes)
+        let imageURL = buildImageURL(movie.posterPath, sizeName: sizeName)
+        let imageKey = imageURL.absoluteString
+        
+        if let image = cachedImages[imageKey] {
+            callback?(image: image)
+            return
+        }
+        
+        let task = session.dataTaskWithURL(imageURL) { (data: NSData?, response: NSURLResponse?, error: NSError?) in
+            do {
+                let image = try self.parseDataTaskToImage(data, response: response, error: error)
+                
+                self.cachedImages[imageKey] = image
+                
+                callback?(image: image)
+            }
+            catch {
+                print("No Image: \(movie.title)")
+                print(error)
+                callback?(image: nil)
             }
         }
         
@@ -114,9 +152,37 @@ final class MovieDatabaseAPI {
         return NSURL(string: path)!
     }
     
+    private func buildImageURL(filename: String, sizeName: String = "original") -> NSURL {
+        // TODO: get something to convert pixel size to image size
+        let path = configuration.secureURL + sizeName + filename
+        return NSURL(string: path)!
+    }
     
     private func parseDataTaskToJSON(data: NSData?, response: NSURLResponse?, error: NSError?) throws -> JSON {
         
+        let data = try parseDataTask(data, response: response, error: error)
+        
+        let json = JSON(data: data)
+        
+        if let error = json.error {
+            throw error
+        }
+        
+        return json
+    }
+
+    private func parseDataTaskToImage(data: NSData?, response: NSURLResponse?, error: NSError?) throws -> UIImage {
+        
+        let data = try parseDataTask(data, response: response, error: error)
+        
+        guard let image = UIImage(data: data) else {
+            throw APIErrorType.InvalidData(data)
+        }
+        
+        return image
+    }
+    
+    private func parseDataTask(data: NSData?, response: NSURLResponse?, error: NSError?) throws -> NSData {
         if let error = error {
             throw error
         }
@@ -133,15 +199,9 @@ final class MovieDatabaseAPI {
             throw APIErrorType.InvalidData(nil)
         }
         
-        let json = JSON(data: data)
-        
-        if let error = json.error {
-            throw error
-        }
-        
-        return json
+        return data
     }
-
+    
 }
 
 

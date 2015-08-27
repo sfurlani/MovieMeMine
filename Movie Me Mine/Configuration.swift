@@ -35,4 +35,34 @@ struct Configuration {
         
         changeKeys      = json["change_keys"].arrayValue.map { $0.stringValue }
     }
+    
+    func closestSize(size: Int?, sizes: [String]) -> String {
+        
+        guard let size = size else {
+            return sizes.last!
+        }
+        
+        let sizeValues = sizesToInts(sizes)
+        
+        let deltas = sizeValues.map { abs($0 - size) }
+        
+        let minimum = deltas.minElement()!
+        
+        let index = deltas.indexOf(minimum)!
+        
+        return sizes[index]
+        
+    }
+    
+    private func sizesToInts(sizes: [String]) -> [Int] {
+        let sizeBoxes = sizes.map { Int($0.stringByTrimmingCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)) }
+        
+        let maximum = sizeBoxes.maxElement(<)!!
+        
+        let doubleMax = maximum * 2
+        
+        return sizeBoxes.map { $0 ?? doubleMax }
+        
+    }
+    
 }

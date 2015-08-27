@@ -8,27 +8,32 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MovieCell" customModule="Movie_Me_Mine" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="128" height="192"/>
+            <rect key="frame" x="0.0" y="0.0" width="256" height="384"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="128" height="192"/>
+                <rect key="frame" x="0.0" y="0.0" width="256" height="384"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="2015-06-18" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUc-et-oGs" userLabel="release">
-                        <rect key="frame" x="0.0" y="176" width="128" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="751" text="2015-06-18" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUc-et-oGs" userLabel="release">
+                        <rect key="frame" x="0.0" y="314" width="256" height="16"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mad Max: Fury Road and the bunny" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qJ8-AG-HJo" userLabel="title">
-                        <rect key="frame" x="0.0" y="128" width="128" height="48"/>
+                        <rect key="frame" x="0.0" y="256" width="256" height="58"/>
                         <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         <color key="textColor" red="1" green="0.80000001190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y7w-nn-aGw">
-                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="87I-sP-ixm">
+                        <rect key="frame" x="118" y="118" width="20" height="20"/>
+                        <animations/>
+                        <color key="color" red="1" green="0.80000001190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="deviceRGB"/>
+                    </activityIndicatorView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y7w-nn-aGw">
+                        <rect key="frame" x="0.0" y="0.0" width="256" height="256"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="y7w-nn-aGw" secondAttribute="height" multiplier="1:1" id="oxc-Dl-3df"/>
@@ -43,21 +48,23 @@
             <constraints>
                 <constraint firstItem="qJ8-AG-HJo" firstAttribute="top" secondItem="y7w-nn-aGw" secondAttribute="bottom" id="3M7-DN-N9f"/>
                 <constraint firstAttribute="trailing" secondItem="y7w-nn-aGw" secondAttribute="trailing" id="4ID-dA-G4y"/>
+                <constraint firstItem="87I-sP-ixm" firstAttribute="centerX" secondItem="y7w-nn-aGw" secondAttribute="centerX" id="Gi2-Ff-9gB"/>
                 <constraint firstItem="y7w-nn-aGw" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="W5q-hQ-dJx"/>
                 <constraint firstItem="dUc-et-oGs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="bNf-iY-SP6"/>
                 <constraint firstAttribute="trailing" secondItem="qJ8-AG-HJo" secondAttribute="trailing" id="dPt-Oj-xDO"/>
                 <constraint firstAttribute="trailing" secondItem="dUc-et-oGs" secondAttribute="trailing" id="gdj-Up-GRp"/>
                 <constraint firstItem="qJ8-AG-HJo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="jWy-HZ-jly"/>
-                <constraint firstAttribute="bottom" secondItem="dUc-et-oGs" secondAttribute="bottom" id="kn4-0R-7tu"/>
+                <constraint firstItem="87I-sP-ixm" firstAttribute="centerY" secondItem="y7w-nn-aGw" secondAttribute="centerY" id="kch-Cs-7yX"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dUc-et-oGs" secondAttribute="bottom" id="kn4-0R-7tu"/>
                 <constraint firstItem="y7w-nn-aGw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="vck-eU-EXK"/>
                 <constraint firstItem="dUc-et-oGs" firstAttribute="top" secondItem="qJ8-AG-HJo" secondAttribute="bottom" id="yK9-mj-E4I"/>
             </constraints>
             <connections>
                 <outlet property="poster" destination="y7w-nn-aGw" id="obq-7h-ihl"/>
-                <outlet property="release" destination="dUc-et-oGs" id="Odw-Te-SoW"/>
                 <outlet property="releaseDateLabel" destination="dUc-et-oGs" id="fj8-3j-go5"/>
                 <outlet property="titleLabel" destination="qJ8-AG-HJo" id="qwf-P3-8gY"/>
             </connections>
+            <point key="canvasLocation" x="138" y="138"/>
         </collectionViewCell>
     </objects>
 </document>

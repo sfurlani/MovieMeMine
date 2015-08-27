@@ -11,6 +11,8 @@ import UIKit
 final class MovieListDataSource: NSObject {
     let movies: [Movie]
     
+    let databaseAPI: MovieDatabaseAPI
+    
     var collectionView: UICollectionView? {
         didSet {
             collectionView?.dataSource = self
@@ -20,8 +22,10 @@ final class MovieListDataSource: NSObject {
         }
     }
     
-    init(movies: [Movie]) {
+    init(movies: [Movie], databaseAPI: MovieDatabaseAPI, collectionView: UICollectionView? = nil) {
         self.movies = movies
+        self.collectionView = collectionView
+        self.databaseAPI = databaseAPI
     }
     
     
@@ -38,7 +42,21 @@ extension MovieListDataSource : UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCellWithReuseIdentifier(MovieCell.reuseIdentifier, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(MovieCell.reuseIdentifier, forIndexPath: indexPath)
+        
+        guard let movieCell = cell as? MovieCell else {
+            return cell
+        }
+        
+        movieCell.databaseAPI = self.databaseAPI
+        
+        guard indexPath.row < movies.count else {
+            return movieCell
+        }
+        
+        movieCell.movie = movies[indexPath.row]
+        
+        return movieCell
     }
     
 }

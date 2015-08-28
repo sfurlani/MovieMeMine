@@ -81,6 +81,31 @@ class MovieDatabaseAPITests: XCTestCase {
         }
     }
     
+    func testSearchMovies() {
+        let search = "bob"
+        let expect = "What About Bob?"
+        let expectation = expectationWithDescription("Downloading Searched Movies: \(search)")
+        
+        database.movieSearch(search) {
+            guard let movies = $0 else {
+                XCTFail("No Movies Returned")
+                return
+            }
+            
+            let titles = movies.map { $0.title }
+            
+            XCTAssertTrue(titles.contains(expect), "Query did not return: '\(expect)'")
+            
+            expectation.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(5.0) {
+            if let error = $0 {
+                XCTFail("Error: \(error)")
+            }
+        }
+    }
+    
     func testMovieDetail() {
         // minions
         let testMovie = Movie()

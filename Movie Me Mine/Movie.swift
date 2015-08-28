@@ -19,6 +19,7 @@ struct Movie {
     let releaseDate: String?
     let runtime: Int?
     let rating: Float?
+    let votes: Int
     
     init(json: JSON) {
         backdropPath = json["backdrop_path"].stringValue
@@ -28,6 +29,7 @@ struct Movie {
         overview = json["overview"].stringValue
         releaseDate = json["release_date"].string
         rating = json["vote_average"].float
+        votes = json["vote_count"].intValue
         runtime = json["runtime"].int
     }
 
@@ -39,11 +41,22 @@ struct Movie {
         if let releaseDate = releaseDate {
             output += "RELEASED: \(releaseDate)\n"
         }
-        if let rating = rating {
+        else {
+            output += "RELEASED: -unknown-\n"
+        }
+        
+        if let rating = rating where votes > 0 {
             output += "RATING: \(rating)/10\n"
         }
+        else {
+            output += "RATING: -unrated- \n"
+        }
+        
         if let runtime = runtime {
             output += "RUNNING TIME: \(runtime) minutes\n"
+        }
+        else {
+            output += "RUNNING TIME: \n"
         }
         
         output += "\nDESCRIPTION:\n"+overview

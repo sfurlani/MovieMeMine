@@ -110,6 +110,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		75E630B61B8FDE0F00F780D0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				75F06EA51B8F5AFD00F154C4 /* MovieDatabaseAPI.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		75F06E651B8F53B900F154C4 = {
 			isa = PBXGroup;
 			children = (
@@ -134,9 +142,8 @@
 		75F06E701B8F53B900F154C4 /* Movie Me Mine */ = {
 			isa = PBXGroup;
 			children = (
+				75E630B61B8FDE0F00F780D0 /* Services */,
 				75F06EA41B8F5AE600F154C4 /* Model */,
-				75F06EA31B8F585500F154C4 /* Utility */,
-				75F06EA21B8F584F00F154C4 /* Segues */,
 				75F06EA11B8F584700F154C4 /* Views */,
 				75F06EA01B8F584100F154C4 /* ViewModel */,
 				75F06E9F1B8F583800F154C4 /* ViewControllers */,
@@ -193,24 +200,9 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		75F06EA21B8F584F00F154C4 /* Segues */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Segues;
-			sourceTree = "<group>";
-		};
-		75F06EA31B8F585500F154C4 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Utility;
-			sourceTree = "<group>";
-		};
 		75F06EA41B8F5AE600F154C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				75F06EA51B8F5AFD00F154C4 /* MovieDatabaseAPI.swift */,
 				75F06EB31B8F65E700F154C4 /* Configuration.swift */,
 				7591213D1B8F806A00B7110B /* Movie.swift */,
 			);

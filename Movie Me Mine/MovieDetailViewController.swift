@@ -23,6 +23,14 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
+    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
+        return .Fade
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

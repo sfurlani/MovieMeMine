@@ -13,11 +13,11 @@
 		759121441B8F858800B7110B /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759121421B8F858800B7110B /* MovieCell.swift */; settings = {ASSET_TAGS = (); }; };
 		759121451B8F858800B7110B /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 759121431B8F858800B7110B /* MovieCell.xib */; settings = {ASSET_TAGS = (); }; };
 		759121471B8FACA400B7110B /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759121461B8FACA400B7110B /* MovieDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		75E630B81B8FE70E00F780D0 /* MovieDatabaseAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E630B71B8FE70E00F780D0 /* MovieDatabaseAPITests.swift */; settings = {ASSET_TAGS = (); }; };
 		75F06E721B8F53B900F154C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F06E711B8F53B900F154C4 /* AppDelegate.swift */; };
 		75F06E771B8F53B900F154C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75F06E751B8F53B900F154C4 /* Main.storyboard */; };
 		75F06E791B8F53B900F154C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75F06E781B8F53B900F154C4 /* Assets.xcassets */; };
 		75F06E7C1B8F53B900F154C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75F06E7A1B8F53B900F154C4 /* LaunchScreen.storyboard */; };
-		75F06E871B8F53B900F154C4 /* Movie_Me_MineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F06E861B8F53B900F154C4 /* Movie_Me_MineTests.swift */; };
 		75F06E921B8F53B900F154C4 /* Movie_Me_MineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F06E911B8F53B900F154C4 /* Movie_Me_MineUITests.swift */; };
 		75F06EA61B8F5AFD00F154C4 /* MovieDatabaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F06EA51B8F5AFD00F154C4 /* MovieDatabaseAPI.swift */; settings = {ASSET_TAGS = (); }; };
 		75F06EAA1B8F5E9600F154C4 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 75F06EA91B8F5E9600F154C4 /* Cartfile */; settings = {ASSET_TAGS = (); }; };
@@ -65,6 +65,7 @@
 		759121421B8F858800B7110B /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MovieCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		759121431B8F858800B7110B /* MovieCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
 		759121461B8FACA400B7110B /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		75E630B71B8FE70E00F780D0 /* MovieDatabaseAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDatabaseAPITests.swift; sourceTree = "<group>"; };
 		75F06E6E1B8F53B900F154C4 /* Movie Me Mine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie Me Mine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75F06E711B8F53B900F154C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75F06E761B8F53B900F154C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,7 +73,6 @@
 		75F06E7B1B8F53B900F154C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75F06E7D1B8F53B900F154C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75F06E821B8F53B900F154C4 /* Movie Me MineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Movie Me MineTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		75F06E861B8F53B900F154C4 /* Movie_Me_MineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie_Me_MineTests.swift; sourceTree = "<group>"; };
 		75F06E881B8F53B900F154C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75F06E8D1B8F53B900F154C4 /* Movie Me MineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Movie Me MineUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75F06E911B8F53B900F154C4 /* Movie_Me_MineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie_Me_MineUITests.swift; sourceTree = "<group>"; };
@@ -159,8 +159,8 @@
 		75F06E851B8F53B900F154C4 /* Movie Me MineTests */ = {
 			isa = PBXGroup;
 			children = (
-				75F06E861B8F53B900F154C4 /* Movie_Me_MineTests.swift */,
 				75F06E881B8F53B900F154C4 /* Info.plist */,
+				75E630B71B8FE70E00F780D0 /* MovieDatabaseAPITests.swift */,
 			);
 			path = "Movie Me MineTests";
 			sourceTree = "<group>";
@@ -396,7 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75F06E871B8F53B900F154C4 /* Movie_Me_MineTests.swift in Sources */,
+				75E630B81B8FE70E00F780D0 /* MovieDatabaseAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

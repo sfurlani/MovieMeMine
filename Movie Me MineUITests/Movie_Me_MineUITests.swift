@@ -28,9 +28,43 @@ class Movie_Me_MineUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testDetailAppearance() {
+        
+        let app = XCUIApplication()
+        app.collectionViews.cells.otherElements.staticTexts["Minions"].tap()
+        
+        let detailView = app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element
+        
+        expectationForPredicate(
+            NSPredicate(format: "count == 1"),
+            evaluatedWithObject: detailView.textViews,
+            handler: nil)
+        
+        expectationForPredicate(
+            NSPredicate(format: "count == 2"),
+            evaluatedWithObject: detailView.images,
+            handler: nil)
+        
+        waitForExpectationsWithTimeout(1.0, handler: nil)
+        
     }
+    
+    func testSearch() {
+        let app = XCUIApplication()
+        
+        app.searchFields.element.tap()
+        app.typeText("bob")
+        app.typeText("\r")
+        
+        let searchResult = app.collectionViews.cells.otherElements.staticTexts["What About Bob?"]
+        
+        expectationForPredicate(
+            NSPredicate(format: "exists == 1"),
+            evaluatedWithObject: searchResult,
+            handler: nil)
+        
+        waitForExpectationsWithTimeout(10.0, handler: nil)
+    }
+    
     
 }
